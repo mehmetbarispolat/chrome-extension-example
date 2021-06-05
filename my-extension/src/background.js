@@ -1,4 +1,5 @@
 'use strict';
+import { log } from './common/_log'
 
 // With background scripts you can communicate with popup
 // and contentScript files.
@@ -12,7 +13,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }, my name is Bac. I am from Background. It's great to hear from you.`;
 
     // Log message coming from the `request` parameter
-    console.log(request.payload.message);
+    log(request.payload.message);
     // Send a response message
     sendResponse({
       message,

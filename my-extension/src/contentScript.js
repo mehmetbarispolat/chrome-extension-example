@@ -1,5 +1,5 @@
 'use strict';
-
+import { log } from './common/_log'
 // Content script file will run in the context of web page.
 // With content script you can manipulate the web pages using
 // Document Object Model (DOM).
@@ -13,7 +13,7 @@
 
 // Log `title` of current active web page
 const pageTitle = document.head.getElementsByTagName('title')[0].innerHTML;
-console.log(
+log(
   `Page title is: '${pageTitle}' - evaluated by Chrome extension's 'contentScript.js' file`
 );
 
@@ -26,14 +26,14 @@ chrome.runtime.sendMessage(
     },
   },
   response => {
-    console.log(response.message);
+    log(response.message);
   }
 );
 
 // Listen for message
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.type === 'COUNT') {
-    console.log(`Current count is ${request.payload.count}`);
+    log(`Current count is ${request.payload.count}`);
   }
 
   // Send an empty response
